@@ -1,0 +1,97 @@
+@font-face {
+	font-family: 'Blogger Sans';
+	src: url('../fonts/BloggerSans/BloggerSans.woff2') format('woff2'),
+		url('../fonts/BloggerSans/BloggerSans.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Blogger Sans';
+	src: url('../fonts/BloggerSans/BloggerSans-Medium.woff2') format('woff2'),
+	url('../fonts/BloggerSans/BloggerSans-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Blogger Sans';
+	src: url('../fonts/BloggerSans/BloggerSans-Bold.woff2') format('woff2'),
+	url('../fonts/BloggerSans/BloggerSans-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	--font-fallback: -apple-system, BlinkMacSystenFont, 'Segoe UI', Arial, sans-serif;
+	--font-main: 'Blogger Sans', var(--font-fallback);
+	--color-accent: #ffd74b;
+	--color-blue-light: #1d2e5b;
+	--color-blue: #161c35;
+	--color-bg: #edeff6;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+}
+
+ul, ol, li {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+button {
+	appearance: none;
+	background: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: auto;
+	height: auto;
+	text-align: left;
+	color: inherit;
+	font: inherit;
+}
+
+html {
+	scrollbar-gutter: stable both-edges;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	font-family: var(--font-main), sans-serif;
+	line-height: 1;
+	background-color: var(--color-bg);
+	color: var(--color-blue-light);
+}
+
+.container {
+	width: 100%;
+	max-width: 1351px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.page-content {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+}
+
+.main {
+	width: 100%;
+	max-width: 950px;
+}
