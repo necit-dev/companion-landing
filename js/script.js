@@ -227,7 +227,9 @@ const addUsers = (usersList) => {
 		</article>
 		`
 	).join('\n')
-	users.insertAdjacentHTML('beforeend', html)
+	if (html.length > 0)
+		users.insertAdjacentHTML('beforeend', html)
+	else users.insertAdjacentHTML('beforeend', `<h2 style="text-align: center; margin-top: 20px;">Список пользователей пуст</h2>`)
 }
 
 addUsers(usersObjects)
@@ -301,6 +303,8 @@ submit_btn.addEventListener('click', () => {
 	})
 
 	console.log(filteredUsers);
+	users.replaceChildren();
+	addUsers(filteredUsers);
 })
 
 
