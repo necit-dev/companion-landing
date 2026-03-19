@@ -1,65 +1,3 @@
-const accordions = document.querySelectorAll(".form__accordion")
-const submit_btn = document.querySelector(".form__btn")
-
-accordions.forEach(accordion => {
-	const acc_content = accordion.querySelector('.form__accordion-content')
-	const acc_btn = accordion.querySelector('.form__accordion-opener')
-	acc_btn.addEventListener('click', () => {
-		if (acc_content.classList.contains('form__accordion-content--opened')){
-			acc_content.classList.remove('form__accordion-content--opened')
-			acc_content.setAttribute('inert', '')
-			acc_btn.setAttribute('aria-expanded', 'false')
-		}else {
-			acc_content.classList.add('form__accordion-content--opened')
-			acc_content.removeAttribute('inert')
-			acc_btn.setAttribute('aria-expanded', 'true')
-		}
-	})
-})
-
-submit_btn.addEventListener('click', () => {
-	const formData = {}
-	accordions.forEach(accordion => {
-		const acc_name = accordion.dataset.accordion;
-		const acc_obj = {}
-		if (accordion.dataset.accordion === "level") {
-			const steppers = accordion.querySelectorAll('.form__stepper-input')
-			steppers.forEach(stepper => {
-				acc_obj[stepper.name] = parseInt(stepper.value)
-			})
-		}else {
-			const checkboxes = accordion.querySelectorAll('.form__checkbox>input')
-			checkboxes.forEach(checkbox => {
-				acc_obj[checkbox.name] = checkbox.checked
-			})
-		}
-		formData[acc_name] = acc_obj;
-	})
-	console.log(formData);
-})
-
-const users = document.querySelector('.users')
-
-users.addEventListener('click', (e) => {
-	const say = e.target.closest('.user__btn')
-	const like = e.target.closest('.user__like-btn')
-	const user = e.target.closest('.user')
-	console.log(user.dataset.id);
-	if (say) {
-		const name = user.querySelector('.user__name')
-		alert(`Вы позвали пользователя: ${name.textContent}`)
-	}
-	if (like) {
-		const like_field = user.querySelector('.user__like')
-
-		if (like_field.classList.contains('user__like--active')) {
-			like_field.classList.remove('user__like--active')
-		}else {
-			like_field.classList.add('user__like--active')
-		}
-	}
-})
-
 const usersObjects = [
 	{
 		id: 1,
@@ -96,8 +34,142 @@ const usersObjects = [
 		},
 		level: 99,
 		status: "offline" // "offline", "online" or "busy"
-	},
+	}, {
+		id: 2,
+		name: "Петя Демин",
+		avatarUrl: './img/users/demin.jpg',
+		hashtags: [
+			"бургер",
+			"бар",
+			"футбол",
+			"концерт",
+			"крафт",
+		],
+		countries: [
+			{
+				name: "Бельгия",
+				src: "./img/countries/Belgium.png",
+			},
+			{
+				name: "Чехия",
+				src: "./img/countries/Czech.png",
+			}
+		],
+		likes: 1500,
+		transports: {
+			plane: true,
+			bus: true,
+			bike: false,
+			run: true
+		},
+		level: 80,
+		status: "busy" // "offline", "online" or "busy"
+	}, {
+		id: 3,
+		name: "Марк Смолов",
+		avatarUrl: './img/users/smolov.jpg',
+		hashtags: [
+			"рэп",
+			"тату",
+			"хайпбист",
+			"кроссовки",
+			"суприм",
+		],
+		countries: [
+			{
+				name: "США",
+				src: "./img/countries/USA.png",
+			},
+			{
+				name: "Австралия",
+				src: "./img/countries/Australia.png",
+			},
+			{
+				name: "Доминика",
+				src: "./img/countries/Dominica.png",
+			}
+		],
+		likes: 170,
+		transports: {
+			plane: true,
+			bus: false,
+			bike: true,
+			run: false
+		},
+		level: 25,
+		status: "busy" // "offline", "online" or "busy"
+	}, {
+		id: 4,
+		name: "Лариса Роговая",
+		avatarUrl: './img/users/rogovaya.jpg',
+		hashtags: [
+			"образование",
+			"карьера",
+			"учеба",
+			"линкедин",
+		],
+		countries: [
+			{
+				name: "Великобритания",
+				src: "./img/countries/UK.png",
+			},
+			{
+				name: "Германия",
+				src: "./img/countries/Germany.png",
+			}
+		],
+		likes: 23,
+		transports: {
+			plane: true,
+			bus: true,
+			bike: false,
+			run: false
+		},
+		level: 50,
+		status: "online" // "offline", "online" or "busy"
+	}
 ]
+
+const accordions = document.querySelectorAll(".form__accordion")
+const submit_btn = document.querySelector(".form__btn")
+
+accordions.forEach(accordion => {
+	const acc_content = accordion.querySelector('.form__accordion-content')
+	const acc_btn = accordion.querySelector('.form__accordion-opener')
+	acc_btn.addEventListener('click', () => {
+		if (acc_content.classList.contains('form__accordion-content--opened')){
+			acc_content.classList.remove('form__accordion-content--opened')
+			acc_content.setAttribute('inert', '')
+			acc_btn.setAttribute('aria-expanded', 'false')
+		}else {
+			acc_content.classList.add('form__accordion-content--opened')
+			acc_content.removeAttribute('inert')
+			acc_btn.setAttribute('aria-expanded', 'true')
+		}
+	})
+})
+
+const users = document.querySelector('.users')
+
+users.addEventListener('click', (e) => {
+	const say = e.target.closest('.user__btn')
+	const like = e.target.closest('.user__like-btn')
+	const user = e.target.closest('.user')
+	console.log(user.dataset.id);
+	if (say) {
+		const name = user.querySelector('.user__name')
+		alert(`Вы позвали пользователя: ${name.textContent}`)
+	}
+	if (like) {
+		const like_field = user.querySelector('.user__like')
+
+		if (like_field.classList.contains('user__like--active')) {
+			like_field.classList.remove('user__like--active')
+		}else {
+			like_field.classList.add('user__like--active')
+		}
+	}
+})
 
 const addUsers = (usersList) => {
 	const html = usersList.map((item) => `
@@ -121,13 +193,13 @@ const addUsers = (usersList) => {
 				`).join('')}
 			</div>
 			<button class="user__btn btn">Позвать!</button>
-			<div class="user__like user__like--active">
+			<div class="user__like">
 				<button class="user__like-btn">
 					<svg>
 						<use xlink:href="#like"></use>
 					</svg>
 				</button>
-				<div class="user__like-count">${item.likes > 999999 ? `${Math.floor(item.likes/1000000)},${Math.floor(item.likes%1000000 / 100000)}`: item.likes}</div>
+				<div class="user__like-count">${item.likes > 999999 ? `${Math.floor(item.likes/1000000)},${Math.floor(item.likes%1000000 / 100000)} M`: item.likes}</div>
 			</div>
 			<div class="user__transports">
 				<div class="user__transport ${item.transports.plane && "user__transport--active"}">
@@ -159,6 +231,78 @@ const addUsers = (usersList) => {
 }
 
 addUsers(usersObjects)
+
+submit_btn.addEventListener('click', () => {
+	const formData = {}
+	accordions.forEach(accordion => {
+		const acc_name = accordion.dataset.accordion;
+		let acc_obj;
+		if (accordion.dataset.accordion === "level") {
+			acc_obj = {}
+			const steppers = accordion.querySelectorAll('.form__stepper-input')
+			steppers.forEach(stepper => {
+				acc_obj[stepper.name] = parseInt(stepper.value)
+			})
+		} else if (accordion.dataset.accordion === "transport") {
+			acc_obj = {}
+			const checkboxes = accordion.querySelectorAll('.form__checkbox>input')
+			checkboxes.forEach(checkbox => {
+				acc_obj[checkbox.name] = checkbox.checked
+			})
+		}
+
+		else {
+			acc_obj = []
+			const checkboxes = accordion.querySelectorAll('.form__checkbox')
+			checkboxes.forEach(checkbox => {
+				const cb = checkbox.querySelector('.form__real-checkbox')
+				if (cb.checked){
+					const name = checkbox.querySelector('.form__checkbox-text').textContent
+					acc_obj.push(name)
+				}
+			})
+		}
+		formData[acc_name] = acc_obj;
+	})
+	console.log(formData);
+	// Transport Filter
+	let filteredUsers;
+	const transportFilterIsEmpty = Object.values(formData.transport).every(val => val === false)
+	if (!transportFilterIsEmpty) {
+		filteredUsers = usersObjects.filter(user => (
+			Object.entries(formData.transport).some(([key, value]) => {
+				return value === true && user.transports[key] === true
+			})
+		))
+	}else {
+		filteredUsers = usersObjects;
+	}
+	// Level Filter
+	filteredUsers = filteredUsers.filter(user => {
+		return formData.level.min <= user.level && formData.level.max >= user.level;
+	})
+	// Music Filters
+	Object.entries(formData).forEach(([key, value]) => {
+		if (key === "transport" || key === "level") return
+		const filterIsEmpty = value.length === 0
+		if (!filterIsEmpty) {
+			filteredUsers = filteredUsers.filter(user => {
+				for (const elem of value) {
+					for (const hashtag of user.hashtags) {
+						if (hashtag.toLowerCase() === elem.toLowerCase()) {
+							return true
+						}
+					}
+				}
+				return false;
+			})
+		}
+		console.log(`key=${key}`, filteredUsers);
+	})
+
+	console.log(filteredUsers);
+})
+
 
 // Double slider - start
 
