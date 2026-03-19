@@ -29,9 +29,16 @@
 	--font-fallback: -apple-system, BlinkMacSystenFont, 'Segoe UI', Arial, sans-serif;
 	--font-main: 'Blogger Sans', var(--font-fallback);
 	--color-accent: #ffd74b;
+	--color-accent-hover: #f3c000;
 	--color-blue-light: #1d2e5b;
 	--color-blue: #161c35;
 	--color-bg: #edeff6;
+	--color-like-bg: #e2e5f2;
+	--color-like-bg-active: #f9eaea;
+	--color-like-bg-hover: #c5c6d1;
+	--color-like-bg-active-hover: #fdd7d7;
+	--color-like-fill: #f02323;
+	--transition: .2s ease-in-out;
 }
 
 *, *::before, *::after {
@@ -85,6 +92,28 @@ body {
 	padding: 0 15px;
 }
 
+/* Some elements - start */
+
+.btn {
+	font-size: 20px;
+	line-height: 20px;
+	max-width: 150px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 700;
+	padding: 15px;
+	background-color: var(--color-accent);
+	border-radius: 25px;
+	cursor: pointer;
+	transition: background-color var(--transition);
+}
+
+.btn:hover {
+	background-color: var(--color-accent-hover);
+}
+
+/* Some elements - end */
+
 .page-content {
 	display: flex;
 	flex-direction: row-reverse;
@@ -95,3 +124,135 @@ body {
 	width: 100%;
 	max-width: 950px;
 }
+
+/* Users - start */
+
+.users {
+	width: 100%;
+}
+
+/* User - start */
+
+.user {
+	display: grid;
+	grid-template-columns: auto 54px auto auto 1fr auto auto;
+	grid-template-rows: 46px repeat(3, auto) 42px;
+	grid-template-areas:
+		"photo . .       .       . .          ."
+		"photo . primary primary . countries  countries"
+		"photo . htags   htags   . countries  countries"
+		"photo . btn     like    . transports level"
+		"photo . .       .       . .          .";
+	background-color: #fff;
+	border-radius: 20px;
+	padding-right: 43px;
+	justify-content: start;
+	align-items: start;
+}
+
+.user__photo {
+	grid-area: photo;
+	width: 285px;
+	height: 285px;
+}
+
+.user__primary {
+	grid-area: primary;
+	display: flex;
+	align-items: center;
+}
+
+.user__status {
+
+}
+
+.user__name {
+	font-size: 30px;
+}
+
+.user__hashtags {
+	grid-area: htags;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 6px;
+	color: #000;
+	font-size: 20px;
+	line-height: 23px;
+	max-width: 226px;
+}
+
+.user__countries {
+	grid-area: countries;
+}
+
+.user__btn {
+	grid-area: btn;
+}
+
+.user__like {
+	grid-area: like;
+	display: flex;
+	align-items: center;
+	column-gap: 7px;
+}
+
+.user__like-btn {
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color-like-bg);
+	border-radius: 50%;
+	transition: background-color var(--transition);
+}
+
+.user__like-btn:hover {
+	background-color: var(--color-like-bg-hover);
+}
+
+.user__like-btn>svg {
+	width: 20px;
+	height: 18px;
+	fill-rule: evenodd;
+	fill: #192144;
+	opacity: 0.5;
+	transition: fill var(--transition), opacity var(--transition),
+		fill-rule var(--transition);
+}
+
+.user__like--active .user__like-btn {
+	background-color: var(--color-like-bg-active);
+}
+
+.user__like--active .user__like-btn:hover {
+	background-color: var(--color-like-bg-active-hover);
+}
+
+.user__like--active .user__like-btn>img {
+	fill: var(--color-like-fill)
+}
+
+.user__like--active>button>svg{
+	fill-rule: nonzero;
+	fill: var(--color-like-fill);
+	opacity: 1;
+}
+
+.user__like-count {
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--color-blue);
+}
+
+.user__transports {
+	grid-area: transports;
+}
+
+.user__level {
+	grid-area: level;
+}
+
+/* User - end */
+/* Users - end */
