@@ -30,11 +30,12 @@
 				<img src="./img/users/firsova.jpg" alt="Таня Фирсова" class="user__photo">
 				<div class="user__primary">
 					<div class="user__status"></div>
-					<h2 class="user__name">Таня Фирсова</h2>
+					<h2 class="user__name" title="Таня Фирсова">Таня Фирсова</h2>
 				</div>
 				<div class="user__hashtags">
 					<div class="user__hashtag">#ЗОЖ</div>
 					<div class="user__hashtag">#ПП</div>
+					<div class="user__hashtag">#Фитнес</div>
 					<div class="user__hashtag">#Фитнес</div>
 					<div class="user__hashtag">#пляж</div>
 					<div class="user__hashtag">#авокадо</div>
@@ -53,6 +54,7 @@
 						<img src="./img/countries/Seychelles.png" alt="Сейшелы" class="user__country-img">
 						<div class="user__country-name">Сейшелы</div>
 					</div>
+
 				</div>
 				<button class="user__btn btn">Позвать!</button>
 				<div class="user__like user__like--active">
@@ -65,26 +67,32 @@
 				</div>
 				<div class="user__transports">
 					<div class="user__transport user__transport--active">
-						<img src="./img/icons/icon_plane.svg" alt="Самолет">
+						<img src="./img/icons/icon_plane.svg" alt="Самолет" class="user__transport-plane">
 					</div>
-					<div class="user__transport user__transport--active">
-						<img src="./img/icons/icon_bus.svg" alt="Автобус">
+					<div class="user__transport">
+						<img src="./img/icons/icon_bus.svg" alt="Автобус" class="user__transport-bus">
 					</div>
-					<div class="user__transport user__transport--active">
-						<img src="./img/icons/icon_bicycle.svg" alt="Велосипед">
+					<div class="user__transport">
+						<img src="./img/icons/icon_bicycle.svg" alt="Велосипед" class="user__transport-bike">
 					</div>
-					<div class="user__transport user__transport--active">
-						<img src="./img/icons/icon_run.svg" alt="Бег">
+					<div class="user__transport">
+						<img src="./img/icons/icon_run.svg" alt="Бег" class="user__transport-run">
 					</div>
 				</div>
-				<div class="user__level">
-					<div class="user__level-number">99</div>
-					<div class="user__level-text">level</div>
+				<div class="user__level circle" style="--size: 64px; --thickness: 3px; --percent: 97; --color: #ff8d30">
+					<svg>
+						<circle class="circle__element" cx="50%" cy="50%" r="calc(50% - var(--thickness) / 2)"/>
+					</svg>
+					<div class="user__level-info">
+						<div class="user__level-number">99</div>
+						<div class="user__level-text">level</div>
+					</div>
 				</div>
 			</article>
 		</section>
 	</main>
 </div>
+
 
 </body>
 </html>
