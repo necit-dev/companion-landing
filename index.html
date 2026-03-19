@@ -33,27 +33,24 @@
 							<button
 								class="form__accordion-opener"
 								type="button"
-								aria-expanded="true">
+								aria-expanded="false">
 								<span>Хобби</span>
 								<img src="img/icons/arrow_expand.svg" alt="arrow">
 							</button>
 						</legend>
-						<div class="form__accordion-content form__accordion-content--opened">
+						<div class="form__accordion-content ">
 							<div class="form__accordion-block">
 								<label class="form__checkbox">
 									<input type="checkbox" class="form__real-checkbox" name="sport">
-									<span class="form__custom-checkbox"></span>
-									Спортзал
+									<span class="form__custom-checkbox"></span>Спортзал
 								</label>
 								<label class="form__checkbox">
 									<input type="checkbox" class="form__real-checkbox" name="calyan">
-									<span class="form__custom-checkbox"></span>
-									Кальян
+									<span class="form__custom-checkbox"></span>Кальян
 								</label>
 								<label class="form__checkbox">
 									<input type="checkbox" class="form__real-checkbox" name="bed">
-									<span class="form__custom-checkbox"></span>
-									Диван
+									<span class="form__custom-checkbox"></span>Диван
 								</label>
 							</div>
 
@@ -73,24 +70,123 @@
 							<div class="form__accordion-block">
 								<label class="form__checkbox">
 									<input type="checkbox" class="form__real-checkbox" name="hard_rock">
-									<span class="form__custom-checkbox"></span>
-									Тяжелый рок
+									<span class="form__custom-checkbox"></span>Тяжелый рок
 								</label>
 								<label class="form__checkbox">
 									<input type="checkbox" class="form__real-checkbox" name="russian_rap">
-									<span class="form__custom-checkbox"></span>
-									Русский рэп
+									<span class="form__custom-checkbox"></span>Русский рэп
 								</label>
 								<label class="form__checkbox">
 									<input type="checkbox" class="form__real-checkbox" name="euro_dance">
-									<span class="form__custom-checkbox"></span>
-									Евроденс
+									<span class="form__custom-checkbox"></span>Евроденс
 								</label>
 							</div>
 
 						</div>
 					</fieldset>
+					<fieldset class="form__accordion" data-accordion="eat">
+						<legend>
+							<button
+								class="form__accordion-opener"
+								type="button"
+								aria-expanded="false">
+								<span>Еда</span>
+								<img src="img/icons/arrow_expand.svg" alt="arrow">
+							</button>
+						</legend>
+						<div class="form__accordion-content">
+							<div class="form__accordion-block">
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="meat">
+									<span class="form__custom-checkbox"></span>Мясоед
+								</label>
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="russian_rap">
+									<span class="form__custom-checkbox"></span>ПП
+								</label>
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="euro_dance">
+									<span class="form__custom-checkbox"></span>Веган-сыроед
+								</label>
+							</div>
 
+						</div>
+					</fieldset>
+					<fieldset class="form__accordion" data-accordion="transport">
+						<legend>
+							<button
+								class="form__accordion-opener"
+								type="button"
+								aria-expanded="true">
+								<span>Транспорт</span>
+								<img src="img/icons/arrow_expand.svg" alt="arrow">
+							</button>
+						</legend>
+						<div class="form__accordion-content form__accordion-content--opened">
+							<div class="form__accordion-block form__accordion-block--transport">
+								<label class="form__checkbox form__checkbox--transport">
+									<input type="checkbox" class="form__real-checkbox" name="plane">
+									<span class="form__transport-checkbox">
+										<img src="./img/icons/icon_plane.svg" alt="Самолет">
+									</span>
+								</label>
+								<label class="form__checkbox form__checkbox--transport">
+									<input type="checkbox" class="form__real-checkbox" name="bus">
+									<span class="form__transport-checkbox">
+										<img src="./img/icons/icon_bus.svg" alt="Автобус">
+									</span>
+								</label>
+								<label class="form__checkbox form__checkbox--transport">
+									<input type="checkbox" class="form__real-checkbox" name="bike">
+									<span class="form__transport-checkbox">
+										<img src="./img/icons/icon_bicycle.svg" alt="Велосипед">
+									</span>
+								</label>
+								<label class="form__checkbox form__checkbox--transport">
+									<input type="checkbox" class="form__real-checkbox" name="run">
+									<span class="form__transport-checkbox">
+										<img src="./img/icons/icon_run.svg" alt="Бег">
+									</span>
+								</label>
+
+							</div>
+						</div>
+					</fieldset>
+					<fieldset class="form__accordion" data-accordion="level">
+						<legend>
+							<button
+								class="form__accordion-opener"
+								type="button"
+								aria-expanded="true">
+								<span>Левел</span>
+								<img src="img/icons/arrow_expand.svg" alt="arrow">
+							</button>
+						</legend>
+						<div class="form__accordion-content form__accordion-content--opened">
+							<div class="form__accordion-block">
+								<div class="form__stepper">
+									<input class="form__stepper-input form__stepper-input--min" type="number" name="min" value="30"
+									       min="0"
+									       max="100">
+									<div class="form__stepper-delimiter"></div>
+									<input class=" form__stepper-input form__stepper-input--max" type="number" name="max" value="100"
+									       min="0"
+									       max="100">
+								</div>
+								<div class="form__range">
+									<div class="form__slider-track"></div>
+									<input type="range" class="form__slider form__slider--min" name="min_value" value="30"
+									       min="0"
+									       max="100">
+									<input type="range" class="form__slider form__slider--max" name="max_value" value="100"
+									       min="0"
+									       max="100">
+								</div>
+
+
+							</div>
+						</div>
+					</fieldset>
 				</div>
 			</div>
 			<button class="form__btn btn" type="button">Показать</button>
@@ -127,7 +223,6 @@
 						<img src="./img/countries/Seychelles.png" alt="Сейшелы" class="user__country-img">
 						<div class="user__country-name">Сейшелы</div>
 					</div>
-
 				</div>
 				<button class="user__btn btn">Позвать!</button>
 				<div class="user__like user__like--active">

@@ -21,13 +21,18 @@ submit_btn.addEventListener('click', () => {
 	const formData = {}
 	accordions.forEach(accordion => {
 		const acc_name = accordion.dataset.accordion;
-		// console.log(acc_name);
 		const acc_obj = {}
-		const checkboxes = accordion.querySelectorAll('.form__checkbox>input')
-		checkboxes.forEach(checkbox => {
-			acc_obj[checkbox.name] = checkbox.checked
-		})
-		// console.log(acc_obj);
+		if (accordion.dataset.accordion === "level") {
+			const steppers = accordion.querySelectorAll('.form__stepper-input')
+			steppers.forEach(stepper => {
+				acc_obj[stepper.name] = parseInt(stepper.value)
+			})
+		}else {
+			const checkboxes = accordion.querySelectorAll('.form__checkbox>input')
+			checkboxes.forEach(checkbox => {
+				acc_obj[checkbox.name] = checkbox.checked
+			})
+		}
 		formData[acc_name] = acc_obj;
 	})
 	console.log(formData);
@@ -91,8 +96,7 @@ const usersObjects = [
 		},
 		level: 99,
 		status: "offline" // "offline", "online" or "busy"
-
-	}
+	},
 ]
 
 const addUsers = (usersList) => {
@@ -154,7 +158,98 @@ const addUsers = (usersList) => {
 	users.insertAdjacentHTML('beforeend', html)
 }
 
-// addUsers(usersObjects)
+addUsers(usersObjects)
+
+// Double slider - start
+
+const sliderMin = document.querySelector('.form__slider--min')
+const sliderMax = document.querySelector('.form__slider--max')
+const sliderTrack = document.querySelector('.form__slider-track')
+const minGap = 0;
+
+const stepperMin = document.querySelector('.form__stepper-input--min')
+const stepperMax = document.querySelector('.form__stepper-input--max')
 
 
+const fillColor = () => {
+	let percent1 = (sliderMin.value / sliderMin.max)*100
+	let percent2 = (sliderMax.value / sliderMax.max)*100
+	sliderTrack.style.background = `linear-gradient(to right, #1d2e5b33 ${percent1}% , var(--color-blue-light) ${percent1}% , var(--color-blue-light) ${percent2}%, #1d2e5b33 ${percent2}%)`;
+}
+
+const slideMin = () => {
+	if (parseInt(sliderMax.value) - parseInt(sliderMin.value) <= minGap){
+		sliderMin.value = parseInt(sliderMax.value) - minGap;
+	}
+	stepperMin.value = parseInt(sliderMin.value)
+	if (parseInt(sliderMin.value) > 50) {
+		sliderMin.style.zIndex = "100";
+	}else {
+		sliderMin.style.zIndex = "1";
+	}
+	fillColor()
+}
+
+const slideMax = () => {
+	if (parseInt(sliderMax.value) - parseInt(sliderMin.value) <= minGap) {
+		sliderMax.value = parseInt(sliderMin.value) + minGap;
+	}
+	stepperMax.value = parseInt(sliderMax.value)
+	if (parseInt(sliderMax.value) < 50) {
+		sliderMax.style.zIndex = "100";
+	}else {
+		sliderMax.style.zIndex = "1";
+	}
+	fillColor();
+}
+
+sliderMin.addEventListener('input', slideMin)
+sliderMax.addEventListener('input', slideMax)
+
+stepperMin.addEventListener('change', (e) => {
+	let val = parseInt(e.target.value)
+	let maxVal = parseInt(sliderMax.value)
+	console.log("val: ", val);
+	console.log("maxVal: ", maxVal);
+	if (val < 0)val = 0;
+	if (val > 100) val = 100;
+	if (val > maxVal) {
+		maxVal = val;
+	}
+	if (val > 50) {
+		sliderMin.style.zIndex = "100";
+	}else {
+		sliderMin.style.zIndex = "1";
+	}
+
+	stepperMin.value = val;
+	stepperMax.value = maxVal;
+	sliderMin.value = val;
+	sliderMax.value = maxVal;
+	fillColor()
+})
+
+stepperMax.addEventListener('change', (e) => {
+	let val = parseInt(e.target.value)
+	let minVal = parseInt(sliderMin.value)
+	if (val < 0) val = 0;
+	if (val > 100) val = 100;
+	if (val < minVal) {
+		minVal = val;
+		stepperMin.value = minVal;
+		stepperMax.value = minVal;
+	}
+	if (val < 50) {
+		sliderMax.style.zIndex = "100";
+	}else {
+		sliderMax.style.zIndex = "1";
+	}
+	stepperMin.value = minVal;
+	stepperMax.value = val;
+	sliderMin.value = minVal;
+	sliderMax.value = val;
+	fillColor()
+})
+
+fillColor()
 
