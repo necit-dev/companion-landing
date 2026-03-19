@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Попутчик</title>
-	<link rel="preload" as="font" type="font/woff2" href="./fonts/BloggerSans/BloggerSansBold.woff2"
+	<link rel="preload" as="font" type="font/woff2" href="./fonts/BloggerSans/BloggerSans-Bold.woff2"
 	      crossorigin>
-	<link rel="preload" as="font" type="font/woff2" href="./fonts/BloggerSans/BloggerSansMedium.woff2"
+	<link rel="preload" as="font" type="font/woff2" href="./fonts/BloggerSans/BloggerSans-Medium.woff2"
 	      crossorigin>
 	<link rel="preload" as="font" type="font/woff2" href="./fonts/BloggerSans/BloggerSans.woff2" crossorigin>
 	<link rel="stylesheet" href="./css/style.css">
@@ -23,10 +23,84 @@
 
 
 <div class="page-content container">
-	<aside class="sidebar">sdf</aside>
+	<aside class="sidebar">
+		<h1 class="sidebar__title">Подберите идеального попутчика</h1>
+		<form class="sidebar__form form">
+			<div class="form__scroll">
+				<div class="form__content">
+					<fieldset class="form__accordion" data-accordion="hobby">
+						<legend>
+							<button
+								class="form__accordion-opener"
+								type="button"
+								aria-expanded="true">
+								<span>Хобби</span>
+								<img src="img/icons/arrow_expand.svg" alt="arrow">
+							</button>
+						</legend>
+						<div class="form__accordion-content form__accordion-content--opened">
+							<div class="form__accordion-block">
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="sport">
+									<span class="form__custom-checkbox"></span>
+									Спортзал
+								</label>
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="calyan">
+									<span class="form__custom-checkbox"></span>
+									Кальян
+								</label>
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="bed">
+									<span class="form__custom-checkbox"></span>
+									Диван
+								</label>
+							</div>
+
+						</div>
+					</fieldset>
+					<fieldset class="form__accordion" data-accordion="music">
+						<legend>
+							<button
+								class="form__accordion-opener"
+								type="button"
+								aria-expanded="true">
+								<span>Музыка</span>
+								<img src="img/icons/arrow_expand.svg" alt="arrow">
+							</button>
+						</legend>
+						<div class="form__accordion-content form__accordion-content--opened">
+							<div class="form__accordion-block">
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="hard_rock">
+									<span class="form__custom-checkbox"></span>
+									Тяжелый рок
+								</label>
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="russian_rap">
+									<span class="form__custom-checkbox"></span>
+									Русский рэп
+								</label>
+								<label class="form__checkbox">
+									<input type="checkbox" class="form__real-checkbox" name="euro_dance">
+									<span class="form__custom-checkbox"></span>
+									Евроденс
+								</label>
+							</div>
+
+						</div>
+					</fieldset>
+
+				</div>
+			</div>
+			<button class="form__btn btn" type="button">Показать</button>
+		</form>
+	</aside>
+
+
 	<main class="main">
 		<section class="users">
-			<article class="user">
+			<article class="user" data-id="1">
 				<img src="./img/users/firsova.jpg" alt="Таня Фирсова" class="user__photo">
 				<div class="user__primary">
 					<div class="user__status"></div>
@@ -35,7 +109,6 @@
 				<div class="user__hashtags">
 					<div class="user__hashtag">#ЗОЖ</div>
 					<div class="user__hashtag">#ПП</div>
-					<div class="user__hashtag">#Фитнес</div>
 					<div class="user__hashtag">#Фитнес</div>
 					<div class="user__hashtag">#пляж</div>
 					<div class="user__hashtag">#авокадо</div>
