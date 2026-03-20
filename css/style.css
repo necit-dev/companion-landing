@@ -1046,6 +1046,8 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
 
 	.form__scroll {
 		margin-bottom: 9px;
+		max-height: none;
+
 	}
 
 	.form__content {
@@ -1423,6 +1425,8 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
 		margin-left: 2px;
 		padding: 12px 0 11px;
 	}
+
+
 }
 
 /* Sidebar - end */
