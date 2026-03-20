@@ -103,7 +103,6 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 }
 
-/* Убираем для Firefox */
 input[type=number] {
 	-moz-appearance: textfield;
 }
@@ -739,7 +738,6 @@ input[type="range"] {
 	pointer-events: none;
 }
 
-/* Стили для "ручки" ползунка */
 input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: 13px;
@@ -904,11 +902,10 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
 		width: 100%;
 		max-width: 148px;
 		margin-top: 0;
-		/*width: 148px;*/
 	}
 
 	.form__range {
-		margin-right: 61px;
+		margin-right: 46px;
 		margin-top: 3px;
 	}
 
@@ -1151,7 +1148,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
 	}
 
 
-	/* Стили для "ручки" ползунка */
 	input[type="range"]::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		height: 10px;
@@ -1393,6 +1389,9 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
 
 	.user__level {
 		justify-self: end;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		--size: 45px !important;
 	}
 
