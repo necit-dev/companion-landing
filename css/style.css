@@ -43,6 +43,7 @@
 	--color-status-online: #81e31e;
 
 	--color-lines: #f3c72b;
+	--color-grey: #444444;
 
 	--transition: .2s ease-in-out;
 }
@@ -66,6 +67,7 @@ img {
 	max-width: 100%;
 	height: auto;
 	display: block;
+	vertical-align: middle;
 }
 
 button {
@@ -239,6 +241,10 @@ body {
 	text-overflow: ellipsis;
 }
 
+.user__name-mobile-break {
+	display: none;
+}
+
 .user__hashtags {
 	scrollbar-gutter: stable;
 
@@ -357,11 +363,12 @@ body {
 	align-self: center;
 }
 
-.user__transport {
+.user__transport img {
 	opacity: .15;
+
 }
 
-.user__transport--active {
+.user__transport--active img{
 	opacity: 1;
 }
 
@@ -485,8 +492,7 @@ body {
 .form__content {
 	width: 100%;
 	max-width: 190px;
-	margin: 0 auto ;
-
+	margin: 0 auto;
 }
 
 .form__accordion {
@@ -642,6 +648,12 @@ body {
 	transition: background-color var(--transition);
 }
 
+.form__real-checkbox:focus-visible + .form__transport-checkbox {
+	outline: 2px solid var(--color-blue-light);
+	outline-offset: -2px;
+}
+
+
 .form__checkbox--transport:hover .form__transport-checkbox {
 	background-color: #e4e4e4;
 }
@@ -739,6 +751,11 @@ input[type="range"]::-webkit-slider-thumb {
 	box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+	outline: 3px solid #fff;
+	outline-offset: -4px;
+}
+
 .form__slider-track {
 	width: 100%;
 	height: 3px;
@@ -765,7 +782,7 @@ input[type="range"]::-webkit-slider-thumb {
 	background-color: #e4e4e4;
 }
 
-@media(max-width: 1400px) {
+@media(min-width: 749px) and (max-width: 1400px) {
 	.page-content {
 		flex-direction: column;
 		align-items: center;
@@ -773,6 +790,7 @@ input[type="range"]::-webkit-slider-thumb {
 	.sidebar {
 		width: 688px;
 		position: static;
+		margin-bottom: 40px;
 	}
 	.sidebar__title {
 		font-size: 30px;
@@ -911,9 +929,488 @@ input[type="range"]::-webkit-slider-thumb {
 		transform: translateX(-50%);
 	}
 
-	.user {
-
+	.main {
+		max-width: 688px;
 	}
+
+	.users {
+		gap: 39px;
+	}
+
+	.user {
+		padding: 35px 25px 25px 35px;
+		grid-template-columns: 190px 29px 150px auto 1fr auto;
+		grid-template-rows: auto auto auto auto 46px auto;
+		grid-template-areas:
+		"photo     .         primary   primary   .         transports"
+		"photo     .         htags     htags     .         transports"
+		"photo     .         .         .         .         transports"
+		"photo     .         btn       like      .         level"
+		".         .         .         .         .         ."
+		"countries countries countries countries countries countries";
+	}
+	.user__photo {
+		width: 190px;
+		height: 190px;
+		border-radius: 20px;
+		overflow: hidden;
+	}
+
+	.user__primary {
+		flex-direction: row-reverse;
+		justify-content: start;
+		gap: 20px;
+		transform: translateY(-5px);
+	}
+	
+	.user__name {
+		margin: 0 4px;
+	}
+
+	.user__hashtags {
+		margin: 15px 0 0 7px;
+	}
+	
+	.user__status {
+		position: static;
+	}
+
+	.user__transports {
+		flex-direction: column;
+		margin: 0 auto 6px;
+		gap: 10px;
+	}
+
+	.user__countries {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 28px;
+		margin-left: 2px;
+		position: relative;
+		overflow: visible;
+	}
+
+	.user__countries::before {
+		position: absolute;
+		content: "хочет посетить:";
+		font-size: 15px;
+		line-height: 16px;
+		color : var(--color-grey);
+		background-color: #fff;
+		padding: 0 12px;
+		left: 35px;
+		z-index: 10;
+		top: -36px;
+	}
+	.user__countries::after {
+		position: absolute;
+		content: '';
+		width: calc(100% + 62px);
+		height: 1px;
+		z-index: 5;
+		background-color: var(--color-bg);
+		left: -37px;
+		top: -27px;
+	}
+	
+	.user__country {
+		gap: 11px;
+	}
+}
+
+@media(max-width: 748px){
+	.page-content {
+		flex-direction: column;
+	}
+
+	.main {
+		max-width: 270px;
+		margin: 0 auto;
+	}
+
+	.sidebar {
+		margin: 0 auto 24px;
+		position: static;
+		width: 270px;
+	}
+	.sidebar__title {
+		font-size: 22px;
+		max-width: 220px;
+		margin: 24px auto 22px;
+		letter-spacing: 0.02em;
+	}
+
+	.form__scroll {
+		margin-bottom: 9px;
+	}
+
+	.form__content {
+		width: 100%;
+		max-width: 220px;
+	}
+
+	.form__accordion {
+		padding: 0;
+		margin: 0;
+	}
+
+	.form__accordion-opener {
+		padding: 10px 0;
+		margin: 0;
+		max-width: 220px;
+		border-top: 1px solid var(--color-lines);
+		font-size: 16px;
+		line-height: 18px;
+		font-weight: 700;
+	}
+
+
+	.form__checkbox {
+		font-size: 15px;
+		line-height: 20px;
+		padding: 5px 0;
+		display: flex;
+		align-items: center;
+	}
+
+	.form__checkbox:first-child, .form__checkbox:last-child {
+		margin: 0;
+	}
+
+	.form__checkbox:last-child {
+		margin-bottom: 13px;
+	}
+
+
+	.form__accordion-block--transport {
+	}
+
+	.form__checkbox--transport, .form__checkbox--transport:last-child, .form__checkbox--transport:first-child {
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		margin: 9px 0 19px;
+	}
+
+	.form__custom-checkbox {
+		width: 18px;
+		height: 18px;
+		margin-right: 9px;
+	}
+
+	.form__custom-checkbox::before {
+		width: 13px;
+		height: 13px;
+	}
+
+	.form__transport-checkbox {
+		width: 32px;
+		height: 32px;
+	}
+
+	.form__transport-checkbox img {
+		width: 16px;
+		height: 16px;
+	}
+
+	.form__stepper {
+		margin-top: 3px;
+	}
+
+	.form__stepper-input {
+		font-size: 14px;
+		line-height: 13px;
+		padding: 8px 0 7px
+	}
+
+	.form__stepper-delimiter {
+		position: absolute;
+		content: "";
+		width: 16px;
+		height: 10px;
+		background-color: #fff;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+	}
+
+	.form__stepper-delimiter::before {
+		position: absolute;
+		content: "";
+		width: 16px;
+		height: 1px;
+		background-color: #cbced9;
+		top: 50%;
+		transform: translate(0, -50%)
+	}
+
+	.form__range {
+		height: 30px;
+		margin-top: 10px;
+	}
+
+
+	/* Стили для "ручки" ползунка */
+	input[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		height: 10px;
+		width: 10px;
+		background-color: var(--color-blue-light);
+		cursor: grab;
+		border-radius: 50%;
+		pointer-events: auto;
+		box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	}
+
+	input[type="range"]:focus-visible::-webkit-slider-thumb {
+		outline: 2px solid #fff;
+		outline-offset: -3px;
+	}
+
+	.form__slider-track {
+		width: 100%;
+		height: 2px;
+		position: absolute;
+		margin: auto;
+		top: 0; bottom: 0;
+		border-radius: 5px;
+		background-color: #1d2e5b33;
+	}
+
+	.btn {
+		font-size: 17px;
+		line-height: 17px;
+		padding: 12px;
+	}
+
+	.form__btn {
+		width: 230px;
+		margin-bottom: 26px;
+	}
+
+	.users {
+		gap: 10px;
+		width: 100%;
+	}
+
+	.user {
+		padding: 13px 18px 23px;
+		width: 100%;
+		display: grid;
+		grid-template-columns: 70px 16px auto auto auto;
+		grid-template-rows: repeat(6, auto);
+		grid-template-areas:
+		"photo      .          primary    primary   primary"
+		"photo      .          like       like      like"
+		"htags      htags      htags      htags     htags"
+		"countries  countries  countries  countries countries"
+		"transports transports transports .         level"
+		"btn        btn        btn        btn       btn";
+	}
+
+	.user__photo {
+		margin-top: 2px;
+		width: 70px;
+		height: 70px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	.user__photo-img {
+		scale: 1.4;
+	}
+
+	.user__primary {
+		display: flex;
+		width: 100%;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		align-items: start;
+	}
+	.user__name {
+		font-size: 20px;
+		line-height: 20px;
+		margin-left: 0;
+		max-width: 140px;
+	}
+	
+	.user__status {
+		position: static;
+		width: 6px;
+		height: 6px;
+		margin: 10px 4px 0 0;
+	}
+
+	.user__name-mobile-break {
+		display: block;
+	}
+
+	.user__like {
+		transform: translateX(-36px)
+	}
+
+	.user__like-btn {
+		width: 30px;
+		height: 30px;
+	}
+
+	.user__like-count {
+		font-size: 14px;
+		line-height: 16px;
+	}
+
+	.user__like svg {
+		width: 13px;
+		height: 13px;
+	}
+
+	.user__hashtags {
+		margin-top: 12px;
+		column-gap: 5px;
+		position: relative;
+		overflow: visible;
+		margin-bottom: 42px;
+		max-height: none;
+		max-width: 170px;
+	}
+
+	.user__hashtag {
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	.user__hashtags::before {
+		position: absolute;
+		content: 'хочет посетить:';
+		font-size: 15px;
+		line-height: 16px;
+		color: var(--color-grey);
+		background-color: #fff;
+		padding: 0 11px;
+		bottom: -28px;
+		z-index: 10;
+		left: -11px;
+	}
+
+	.user__hashtags::after {
+		position: absolute;
+		content: '';
+		width: 270px;
+		height: 1px;
+		font-size: 15px;
+		line-height: 16px;
+		background-color: var(--color-bg);
+		padding: 0 11px;
+		bottom: -22px;
+		z-index: 5;
+		left: -26px;
+	}
+
+	.user__countries {
+		overflow: visible;
+		max-height: none;
+		margin-left: 7px;
+		gap: 10px;
+		position: relative;
+		margin-bottom: 38px;
+	}
+
+	.user__country {
+		gap: 14px;
+	}
+
+	.user__country-img {
+		width: 26px;
+		height: 18px;
+	}
+
+	.user__country-name {
+		font-size: 15px;
+		line-height: 16px;
+	}
+
+	.user__countries::before {
+		position: absolute;
+		content: 'транспорт:';
+		font-size: 15px;
+		line-height: 16px;
+		color: var(--color-grey);
+		background-color: #fff;
+		padding: 0 11px;
+		bottom: -27px;
+		z-index: 10;
+		left: -9px;
+	}
+
+	.user__countries::after {
+		position: absolute;
+		content: 'левел:';
+		font-size: 15px;
+		line-height: 16px;
+		color: var(--color-grey);
+		background-color: #fff;
+		padding: 0 11px;
+		bottom: -27px;
+		z-index: 10;
+		right: -9px;
+	}
+
+	.user__transports {
+		gap: 1px;
+		margin: 0 0 0 3px;
+		position: relative;
+	}
+	.user__transports::before {
+		position: absolute;
+		content: '';
+		width: 270px;
+		height: 1px;
+		background-color: var(--color-bg);
+		top: -24px;
+		left: -21px;
+		z-index: 5;
+	}
+
+	.user__transport {
+		width: 32px;
+		height: 32px;
+		background-color: var(--color-bg);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		opacity: 1;
+	}
+	.user__transport-bus {
+		margin-left: 0;
+	}
+
+	.user__transport img {
+		width: 16px;
+		height: 16px;
+	}
+
+	.user__level {
+		justify-self: end;
+		--size: 45px !important;
+	}
+
+	.user__level-number::after {
+		display: none;
+	}
+
+	.user__level-text {
+		display: none;
+	}
+
+	.user__btn {
+		margin-top: 14px;
+		width: 230px;
+		margin-left: 2px;
+		padding: 12px 0 11px;
+	}
+
 }
 
 /* Sidebar - end */

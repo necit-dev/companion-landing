@@ -1,7 +1,8 @@
 const usersObjects = [
 	{
 		id: 1,
-		name: "Таня Фирсова",
+		name: "Таня",
+		lastname: "Фирсова",
 		avatarUrl: './img/users/firsova.jpg',
 		hashtags: [
 			"ЗОЖ",
@@ -36,7 +37,8 @@ const usersObjects = [
 		status: "offline" // "offline", "online" or "busy"
 	}, {
 		id: 2,
-		name: "Петя Демин",
+		name: "Петя",
+		lastname: "Демин",
 		avatarUrl: './img/users/demin.jpg',
 		hashtags: [
 			"бургер",
@@ -66,7 +68,8 @@ const usersObjects = [
 		status: "busy" // "offline", "online" or "busy"
 	}, {
 		id: 3,
-		name: "Марк Смолов",
+		name: "Марк",
+		lastname: "Смолов",
 		avatarUrl: './img/users/smolov.jpg',
 		hashtags: [
 			"рэп",
@@ -100,7 +103,8 @@ const usersObjects = [
 		status: "busy" // "offline", "online" or "busy"
 	}, {
 		id: 4,
-		name: "Лариса Роговая",
+		name: "Лариса",
+		lastname: "Роговая",
 		avatarUrl: './img/users/rogovaya.jpg',
 		hashtags: [
 			"образование",
@@ -157,7 +161,6 @@ users.addEventListener('click', (e) => {
 	const say = e.target.closest('.user__btn')
 	const like = e.target.closest('.user__like-btn')
 	const user = e.target.closest('.user')
-	console.log(user.dataset.id);
 	if (say) {
 		const name = user.querySelector('.user__name')
 		alert(`Вы позвали пользователя: ${name.textContent}`)
@@ -176,10 +179,12 @@ users.addEventListener('click', (e) => {
 const addUsers = (usersList) => {
 	const html = usersList.map((item) => `
 		<article class="user" data-id="${item.id}">
-			<img src="${item.avatarUrl}" alt="${item.name}" class="user__photo"/>
+			<div class="user__photo">
+				<img src="${item.avatarUrl}" alt="${item.name} ${item.lastname}" class="user__photo-img">
+			</div>
 			<div class="user__primary">
 				<div class="user__status${status !== "offline" && ` user__status--${item.status}`}"></div>
-				<h2 class="user__name" title="${item.name}">${item.name}</h2>
+				<h2 class="user__name" title="${item.name} ${item.lastname}">${item.name} <br class="user__name-mobile-break">${item.lastname}</h2>
 			</div>
 			<div class="user__hashtags">
 				${item.hashtags.map(hashtag => `
@@ -217,12 +222,12 @@ const addUsers = (usersList) => {
 					<img src="./img/icons/icon_run.svg" alt="Бег" class="user__transport-run"/>
 				</div>
 			</div>
-			<div class="user__level circle" style="--size: 64px; --thickness: 3px; --percent: ${item.level >= 97 && item.level < 100 ? 97 : item.level}; --color: #ff8d30">
+			<div class="user__level circle" style="--size: 64px; --thickness: 3px; --percent: ${item.level >= 97 && item.level < 100 ? 97 : item.level > 100 ? 100 : item.level < 0 ? 0 : item.level}; --color: #ff8d30">
 				<svg>
 					<circle class="circle__element" cx="50%" cy="50%" r="calc(50% - var(--thickness) / 2)"/>
 				</svg>
 				<div class="user__level-info">
-					<div class="user__level-number">${item.level}</div>
+					<div class="user__level-number">${item.level > 100 ? 100 : item.level < 0 ? 0 : item.level}</div>
 					<div class="user__level-text">level</div>
 				</div>
 			</div>
@@ -268,7 +273,6 @@ submit_btn.addEventListener('click', () => {
 		}
 		formData[acc_name] = acc_obj;
 	})
-	console.log(formData);
 	// Transport Filter
 	let filteredUsers;
 	const transportFilterIsEmpty = Object.values(formData.transport).every(val => val === false)
@@ -301,10 +305,8 @@ submit_btn.addEventListener('click', () => {
 				return false;
 			})
 		}
-		console.log(`key=${key}`, filteredUsers);
 	})
 
-	console.log(filteredUsers);
 	users.replaceChildren();
 	addUsers(filteredUsers);
 })
@@ -359,8 +361,7 @@ sliderMax.addEventListener('input', slideMax)
 stepperMin.addEventListener('change', (e) => {
 	let val = parseInt(e.target.value)
 	let maxVal = parseInt(sliderMax.value)
-	console.log("val: ", val);
-	console.log("maxVal: ", maxVal);
+	if (isNaN(val)) val = 0;
 	if (val < 0)val = 0;
 	if (val > 100) val = 100;
 	if (val > maxVal) {
@@ -382,6 +383,7 @@ stepperMin.addEventListener('change', (e) => {
 stepperMax.addEventListener('change', (e) => {
 	let val = parseInt(e.target.value)
 	let minVal = parseInt(sliderMin.value)
+	if (isNaN(val)) val = 100;
 	if (val < 0) val = 0;
 	if (val > 100) val = 100;
 	if (val < minVal) {
@@ -403,8 +405,10 @@ stepperMax.addEventListener('change', (e) => {
 
 fillColor()
 
+// inert attribute check - start
+
 const acc_contents = document.querySelectorAll('.form__accordion-content')
-const mediaQuery = window.matchMedia('(min-width: 768px) and (max-width: 1400px)');
+const mediaQuery = window.matchMedia('(min-width: 749px) and (max-width: 1400px)');
 
 const toggleInert = (e) => {
 	acc_contents.forEach((item) => {
