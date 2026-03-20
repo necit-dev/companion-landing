@@ -140,9 +140,11 @@ accordions.forEach(accordion => {
 		if (acc_content.classList.contains('form__accordion-content--opened')){
 			acc_content.classList.remove('form__accordion-content--opened')
 			acc_content.setAttribute('inert', '')
+			acc_content.dataset.isinert = 'true'
 			acc_btn.setAttribute('aria-expanded', 'false')
 		}else {
 			acc_content.classList.add('form__accordion-content--opened')
+			acc_content.dataset.isinert = 'false'
 			acc_content.removeAttribute('inert')
 			acc_btn.setAttribute('aria-expanded', 'true')
 		}
@@ -400,4 +402,26 @@ stepperMax.addEventListener('change', (e) => {
 })
 
 fillColor()
+
+const acc_contents = document.querySelectorAll('.form__accordion-content')
+const mediaQuery = window.matchMedia('(min-width: 768px) and (max-width: 1400px)');
+
+const toggleInert = (e) => {
+	acc_contents.forEach((item) => {
+		if (e.matches) {
+			item.removeAttribute('inert');
+		}else {
+			const wasInert = item.dataset.isinert === 'true';
+			if (wasInert) {
+				item.setAttribute('inert', '');
+			}else {
+				item.removeAttribute('inert');
+			}
+		}
+	});
+}
+
+toggleInert(mediaQuery);
+
+mediaQuery.addEventListener('change', toggleInert)
 
