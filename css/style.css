@@ -1393,7 +1393,14 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
 		justify-content: center;
 		align-items: center;
 		--size: 45px !important;
+		width: 45px;
+		height: 45px;
 	}
+
+	.user__level-number {
+		line-height: 45px;
+	}
+
 
 	.user__level-number::after {
 		display: none;
@@ -1409,7 +1416,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
 		margin-left: 2px;
 		padding: 12px 0 11px;
 	}
-
 }
 
 /* Sidebar - end */
