@@ -68,6 +68,8 @@ img {
 	height: auto;
 	display: block;
 	vertical-align: middle;
+	object-fit: cover;
+	object-position: center;
 }
 
 button {
@@ -197,6 +199,11 @@ body {
 
 .user__photo {
 	grid-area: photo;
+	width: 285px;
+	height: 285px;
+}
+
+.user__photo-img {
 	width: 285px;
 	height: 285px;
 	object-fit: cover;
